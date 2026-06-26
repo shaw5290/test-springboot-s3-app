@@ -27,7 +27,7 @@ public class StorageService {
     @Value("${app.s3.bucket}")
     private String bucketName;
 
-    private static final long MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+    private static final long MAX_FILE_SIZE = 500 * 1024 * 1024; // 5 MB
 
     public List<StoredFile> listAll() {
         return repository.findAll();
@@ -39,7 +39,7 @@ public class StorageService {
             throw new IllegalArgumentException("File is empty");
         }
         if (file.getSize() > MAX_FILE_SIZE) {
-            throw new IllegalArgumentException("File size must be less than 5 MB");
+            throw new IllegalArgumentException("File size must be less than 500 MB");
         }
 
         String originalFilename = file.getOriginalFilename();
